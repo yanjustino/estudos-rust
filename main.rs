@@ -5,7 +5,16 @@ static mut GLOBAL:u8 = 1;
 fn main(){
     escopo();
     sombra();
+    println!("soma = {}", soma(1, 1));
 } 
+
+/* uso de funções */
+fn soma(a:i32, b:i32) -> i32 {
+    println!("{} + {} = {}", a, b, a + b);
+    // em rust o ';' é suprimido para que se 
+    // propague o valor da expressão
+    a + b
+}
 
 /* uso de escopo */
 fn sombra(){
