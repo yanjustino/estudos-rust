@@ -15,7 +15,7 @@ fn main() {
 }
 
 /* manipulação de erros */
-fn errors(){
+fn errors() {
     match erros_resultado(0) {
         Ok(s) => println!("String de sucesso: {}", s),
         Err(numero) => println!("Codigo de erro {}", numero),
@@ -25,7 +25,7 @@ fn errors(){
 /* uso de Result para tratar erros
 Para disparar erros de irreparáveis utilize panic!(string)
 */
-fn erros_resultado(value:i8) -> Result<String, u8>{
+fn erros_resultado(value: i8) -> Result<String, u8> {
     if value % 2 == 0 {
         Ok(String::from("deu certo!"))
     } else {
@@ -34,22 +34,26 @@ fn erros_resultado(value:i8) -> Result<String, u8>{
 }
 
 /* Uso de pattern matching */
-fn pattern_matching(){
-    for i in 1..21{
-        println!("{} : {}", i, match i {
-            1 => "Pouco",
-            2 | 3 => "Um pouquinho",
-            4..=10 => "Um bocado",
-            _ if i % 2 == 0 => "Uma boa quantidade",
-            _ => "Muito"
-        });
+fn pattern_matching() {
+    for i in 1..21 {
+        println!(
+            "{} : {}",
+            i,
+            match i {
+                1 => "Pouco",
+                2 | 3 => "Um pouquinho",
+                4..=10 => "Um bocado",
+                _ if i % 2 == 0 => "Uma boa quantidade",
+                _ => "Muito",
+            }
+        );
     }
 }
 
 /* conceito de ownership (referência e borrowing)
 uma variável só pode ter um dono
  */
-fn ownership(){
+fn ownership() {
     //Imutavel
     let uma_string = String::from("Yan Imutável");
     rouba_imutavel(&uma_string);
@@ -64,27 +68,27 @@ fn ownership(){
 /* recebendo a referência do valor na heap.
 o parâmetro da função é imutável
 */
-fn rouba_imutavel(string:&String){
+fn rouba_imutavel(string: &String) {
     println!("{}", string);
 }
 
 /* recebendo a referência do valor na heap.
 o parâmetro da função é mutável
 */
-fn rouba_mutavel(string:&mut String){
+fn rouba_mutavel(string: &mut String) {
     string.push_str(" Justino");
     println!("{}", string);
 }
 
 /* Uso de match statement */
-fn match_statement(){
+fn match_statement() {
     let linguagem = "PHP";
 
     let proposito = match linguagem {
         "PHP" => "Web",
         "Kotlin" => "Android",
         "Python" => "Data sience",
-        _ => "Desconhecido"
+        _ => "Desconhecido",
     };
 
     println!("O proposito de {} é {}", linguagem, proposito);
@@ -92,22 +96,34 @@ fn match_statement(){
 
 /* uso de loops */
 fn repeticoes() {
-    let multiplicador:u8 = 5;
-    let mut contador:u8 = 0;
+    let multiplicador: u8 = 5;
+    let mut contador: u8 = 0;
 
     while contador < 10 {
         contador += 1;
-        println!("{} x {} = {}", multiplicador, contador, multiplicador * contador);
+        println!(
+            "{} x {} = {}",
+            multiplicador,
+            contador,
+            multiplicador * contador
+        );
     }
 
     contador = 0;
     // 'loop' é um iterador infinito
-    loop{
+    loop {
         contador += 1;
-        println!("{} x {} = {}", multiplicador, contador, multiplicador * contador);
+        println!(
+            "{} x {} = {}",
+            multiplicador,
+            contador,
+            multiplicador * contador
+        );
 
         // uso de break. Existe também o continue
-        if contador == 10 { break };
+        if contador == 10 {
+            break;
+        };
     }
 
     // for em um range! {inclusive}..{exclusive}
